@@ -67,7 +67,7 @@ export const portfolioData = {
             {
                 id: "1",
                 colSpan: "md:col-span-8",
-                image: "/assets/projects/flow.png",
+                image: "/assets/saas-agent.png",
                 log: "LOG_011 // AI_AGENT_SAAS",
                 title: "AI-POWERED SaaS AGENT PLATFORM",
                 tags: [
