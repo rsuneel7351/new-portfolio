@@ -100,7 +100,7 @@ export const portfolioData = {
             {
                 id: "3",
                 colSpan: "md:col-span-12",
-                image: "/assets/projects/notes.png",
+                image: "/assets/LMS.png",
                 log: "LOG_033 // PRODUCTION_LMS",
                 title: "PRODUCTION-GRADE LMS",
                 titleGlow: "primary",
@@ -143,7 +143,7 @@ export const portfolioData = {
             {
                 id: "6",
                 colSpan: "md:col-span-4",
-                image: "/assets/projects/crm.png",
+                image: "/assets/helpdesk.png",
                 log: "LOG_048 // HELPDESK_SAAS",
                 title: "HELPDESK SaaS PLATFORM",
                 description: "Designed a role-based customer helpdesk SaaS with ticket escalation logic, SLA automations, and ticket lifecycle tracking. Scaled to process over 16,000+ support tickets.",
