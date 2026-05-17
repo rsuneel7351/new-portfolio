@@ -1,6 +1,6 @@
 export const portfolioData = {
     navbar: {
-        logo: "[ISHAN_YADAV]",
+        logo: "[SUNEEL_KUMAR]",
         links: [
             { label: "// HOME", href: "#hero" },
             { label: "// PROFILE", href: "#about" },
@@ -11,15 +11,15 @@ export const portfolioData = {
         cta: "INITIATE_LINK"
     },
     hero: {
-        status: "System Online: User_Active",
-        title: "FULL STACK DEVELOPER",
-        subtitle: "FULL STACK",
+        status: "System Online: Suneel_Active",
+        title: "SOFTWARE DEVELOPER",
+        subtitle: "SOFTWARE",
         highlight: "DEVELOPER",
         tags: [
-            { text: "FULL STACK", type: "secondary" },
-            { text: "AI AUTOMATION", type: "primary" },
-            { text: "SYSTEM DESIGN", type: "tertiary" },
-            { text: "ANDROID", type: "secondary" }
+            { text: "SOFTWARE DEV", type: "secondary" },
+            { text: "AI & RAG AGENTS", type: "primary" },
+            { text: "FULL STACK", type: "tertiary" },
+            { text: "SYSTEM DESIGN", type: "secondary" }
         ],
         primaryAction: { label: "Access_Projects", href: "#projects" },
         secondaryAction: { label: "Contact_Operator", href: "#contact" }
@@ -27,255 +27,134 @@ export const portfolioData = {
     about: {
         sectionId: "01",
         label: "// SUBJECT_INTEL",
-        title: "Augmenting Digital Realities",
-        description: "I am Ishan Yadav, a Full Stack and Android Developer focused on AI-driven systems, with 3+ years of experience in the MERN ecosystem. As the founder of Attendix (attendix.in), I have built and scaled a production-grade attendance platform across web and mobile. My expertise lies in architecting distributed systems, high-performance APIs, and intelligent automation workflows that unify multiple platforms into seamless user experiences.",
+        title: "Engineering Intelligent Architectures",
+        description: "I am Suneel Kumar, a Software Developer with 2+ years of experience specializing in building scalable full-stack applications, intelligent AI systems, and robust database backends. My expertise lies in designing multi-tenant AI SaaS platforms, RAG ingestion pipelines, and highly available services that optimize operational efficiency and deliver high-performance user experiences.",
         stats: [
-            { label: "EXPERIENCE", value: "3+ YEARS" },
-            { label: "UPTIME", value: "+99%" },
-            { label: "LATENCY REDUCTION", value: "35%" },
-            { label: "USERS SERVED", value: "2K+" }
+            { label: "EXPERIENCE", value: "2+ YEARS" },
+            { label: "LMS STUDENTS", value: "5000+" },
+            { label: "PERFORMANCE BOOST", value: "30%" },
+            { label: "TASKS MANAGED", value: "12K+" }
         ],
         nodes: [
             {
                 id: "DATA_NODE_001",
                 icon: "history_edu",
-                title: "MERN STACK",
-                description: "3+ years of experience building and deploying robust full-stack applications with React, React Native, Node.js, and MongoDB. Serving over 2k+ users across multiple platforms.",
+                title: "FULL STACK & WEB",
+                description: "Developing production-grade platforms with React, Next.js, Node.js, Fastify, FastAPI, and databases like MongoDB, MySQL, and PostgreSQL.",
                 theme: "primary"
             },
             {
                 id: "DATA_NODE_002",
                 icon: "hub",
-                title: "AI & AUTOMATION",
-                description: "Developing AI-driven platforms with WhatsApp integration, Langchain, and cross-platform automated workflows.",
+                title: "AI & RAG PIPELINES",
+                description: "Building scalable ingestion pipelines supporting multiple file formats, website crawling, configurable chunking, vector databases, and agentic tool calling.",
                 theme: "secondary"
             },
             {
                 id: "DATA_NODE_003",
                 icon: "bolt",
-                title: "DEVOPS & CLOUD",
-                description: "Establishing CI/CD pipelines with GitHub Actions, GCP, AWS, and PM2 for sub-second execution and high uptime.",
+                title: "DEVOPS & SCALING",
+                description: "Establishing CI/CD pipelines, containerizing with Docker, and deploying services on AWS and GCP Cloud Run for secure, low-latency execution.",
                 theme: "tertiary"
             }
         ]
     },
-    // pro0
-    //     label: "// SELECT_ARCHIVES",
-    //     title: "Project_Logs",
-    //     readout: "SCANNING_DRIVE_C:/PROJECTS...\n3_ENTRIES_FOUND",
-    //     items: [
-    //         {
-    //             id: "1",
-    //             colSpan: "md:col-span-8",
-    //             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDeu3SoTPV4vcLdtnvXZHjA0q_LSNUafhPbCQ3Xrj6L_1VOabMp5gaNP-xfk_-8V_y7U-_3EnJKoAFimKgBea4MqdspXr2GKNAYfimiW0TARm4ahrAzOP3t2foxf0vuCkP4Mg8N6ZbRkfrWHVFq6jn5T9t5C3DgavcJfgUwRD17_EXzub6asbj02TQcKNR5rlg2jvl5vrPfCVvHbhCIY4YFMdp563dmAsarfm01ldKoKb_1EooS_8tzrTvkeqGg2HYJtv27ojUUX0PI",
-    //             tags: [
-    //                 { label: "REACT_FLOW", theme: "primary" },
-    //                 { label: "RBAC", theme: "secondary" }
-    //             ],
-    //             title: "FLOW MANAGEMENT SYS",
-    //             description: "Comprehensive workflow automation platform enabling visual workflow building using React Flow. Encompasses a multi-tenant architecture, real-time flow execution with persistent state management, and robust RBAC integrated with JWT/OAuth security.",
-    //             metrics: [
-    //                 { value: "7+", label: "NODE_TYPES", theme: "primary" },
-    //                 { value: "30+", label: "PERMISSIONS", theme: "secondary" }
-    //             ],
-    //             theme: "primary"
-    //         },
-    //         {
-    //             id: "2",
-    //             colSpan: "md:col-span-4",
-    //             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAG6iLu6KiX6ByI48iRdpTaM6d_TcvdIx6XbE1bprcOsRYVpAXmNfij1srdxD3fBn_jKVATEQPyBoygMxAJU-IySX2S3C7gV3zMvbpbvKoCZbqTs3et0IAEtXkUrIqFC8V3HzhamTn1nVh8KqJomWTWN7t5PUMabk30OmYe3iJX8j92nFKo7ye_b8n58-40GzQryyGivnVXGv7amEd4lpMaG3mhAppMOBf1TTwcHcNon8KEffX_wXeVGNLeS3-Sh26t0hWrDSY030TF",
-    //             log: "LOG_022 // CRM_SYSTEM",
-    //             title: "MERN-BASED CRM",
-    //             description: "Automated CRM system deployed on Ubuntu with intelligent contact grouping, automated lead capture, and dynamic messaging workflows.",
-    //             tags: [
-    //                 { label: "NGINX", theme: "white" },
-    //                 { label: "PM2", theme: "white" }
-    //             ],
-    //             theme: "secondary"
-    //         },
-    //         {
-    //             id: "3",
-    //             colSpan: "md:col-span-12",
-    //             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSmIn4W9X0UP_qLVZO0OoR7fwu45_4twQCO-xP_izznxi263x__-mMho7ZuYmDqgCo2LeaRUK_C7xgGjZghS6JmqNYSuaCeQ_es_sBsaTKIgGP_beot2iCpetvDrZe0TkqSN1rnlLJMJVYGKfsb-StSDGL-0kfk7w7m4vjfRaWYW8YScJpY4JVgkNcCd_b1g3bqUKpnyDKvryAFHULEp_9lTv5o-cE5W2SQ9Fo_5OSWRKb_TDD4S_jmzwEdWgAHKqWIh8EoAPNpgcB",
-    //             log: "LOG_099 // ICFDR_PORTAL",
-    //             title: "NGO WEB PORTAL",
-    //             titleGlow: "secondary",
-    //             description: "Full-stack web application designed for non-profit operations. Features a secure Razorpay payment gateway integration for reliable and safe donation processing, handling end-to-end SDLC requirements.",
-    //             features: [
-    //                 { icon: "verified_user", label: "RAZORPAY_SECURE", theme: "secondary" },
-    //                 { icon: "cloud_done", label: "500+_TRANSACTIONS", theme: "primary" }
-    //             ],
-    //             theme: "tertiary"
-    //         },
-    //         {
-    //             id: "4",
-    //             colSpan: "md:col-span-12",
-    //             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSmIn4W9X0UP_qLVZO0OoR7fwu45_4twQCO-xP_izznxi263x__-mMho7ZuYmDqgCo2LeaRUK_C7xgGjZghS6JmqNYSuaCeQ_es_sBsaTKIgGP_beot2iCpetvDrZe0TkqSN1rnlLJMJVYGKfsb-StSDGL-0kfk7w7m4vjfRaWYW8YScJpY4JVgkNcCd_b1g3bqUKpnyDKvryAFHULEp_9lTv5o-cE5W2SQ9Fo_5OSWRKb_TDD4S_jmzwEdWgAHKqWIh8EoAPNpgcB",
-    //             log: "LOG_099 // ICFDR_PORTAL",
-    //             title: "NGO WEB PORTAL",
-    //             titleGlow: "secondary",
-    //             description: "Full-stack web application designed for non-profit operations. Features a secure Razorpay payment gateway integration for reliable and safe donation processing, handling end-to-end SDLC requirements.",
-    //             features: [
-    //                 { icon: "verified_user", label: "RAZORPAY_SECURE", theme: "secondary" },
-    //                 { icon: "cloud_done", label: "500+_TRANSACTIONS", theme: "primary" }
-    //             ],
-    //             theme: "tertiary"
-    //         },
-    //         {
-    //             id: "5",
-    //             colSpan: "md:col-span-12",
-    //             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSmIn4W9X0UP_qLVZO0OoR7fwu45_4twQCO-xP_izznxi263x__-mMho7ZuYmDqgCo2LeaRUK_C7xgGjZghS6JmqNYSuaCeQ_es_sBsaTKIgGP_beot2iCpetvDrZe0TkqSN1rnlLJMJVYGKfsb-StSDGL-0kfk7w7m4vjfRaWYW8YScJpY4JVgkNcCd_b1g3bqUKpnyDKvryAFHULEp_9lTv5o-cE5W2SQ9Fo_5OSWRKb_TDD4S_jmzwEdWgAHKqWIh8EoAPNpgcB",
-    //             log: "LOG_099 // ICFDR_PORTAL",
-    //             title: "NGO WEB PORTAL",
-    //             titleGlow: "secondary",
-    //             description: "Full-stack web application designed for non-profit operations. Features a secure Razorpay payment gateway integration for reliable and safe donation processing, handling end-to-end SDLC requirements.",
-    //             features: [
-    //                 { icon: "verified_user", label: "RAZORPAY_SECURE", theme: "secondary" },
-    //                 { icon: "cloud_done", label: "500+_TRANSACTIONS", theme: "primary" }
-    //             ],
-    //             theme: "tertiary"
-    //         }
-    //     ]
-    // },
     projects: {
         label: "// SELECT_ARCHIVES",
         title: "Project_Logs",
-        readout: `SCANNING_DRIVE_C:/PROJECTS...\n8_ENTRIES_FOUND`,
+        readout: `SCANNING_DRIVE_C:/PROJECTS...\n6_ENTRIES_FOUND`,
         items: [
             {
                 id: "1",
                 colSpan: "md:col-span-8",
                 image: "/assets/projects/flow.png",
-                log: "LOG_011 // FLOW_SYSTEM",
-                link: "https://flow.ceoitbox.com",
-                title: "FLOW MANAGEMENT SYSTEM",
+                log: "LOG_011 // AI_AGENT_SAAS",
+                title: "AI-POWERED SaaS AGENT PLATFORM",
                 tags: [
-                    { label: "REACT_FLOW", theme: "white" },
-                    { label: "RBAC", theme: "secondary" },
-                    { label: "AI Powered Flows", theme: "secondary" }
+                    { label: "REACT.JS", theme: "white" },
+                    { label: "FASTAPI", theme: "secondary" },
+                    { label: "NODE.JS", theme: "primary" },
+                    { label: "MULTI-TENANT", theme: "secondary" }
                 ],
-                description: "Enterprise-grade workflow automation platform enabling visual and AI-powered pipeline creation. Built with multi-tenant architecture, real-time execution engine, persistent state handling, and granular RBAC secured via JWT/OAuth.",
-                // metrics: [
-                //     { value: "7+", label: "NODE_TYPES", theme: "primary" },
-                //     { value: "30+", label: "PERMISSIONS", theme: "secondary" }
-                // ],
+                description: "Developed a multi-tenant AI-powered SaaS Agent Platform enabling companies to create no-code AI chatbots with isolated project-level configurations, conversational AI admin workflows, and custom widget-SDK integrations.",
                 theme: "primary"
             },
             {
                 id: "2",
                 colSpan: "md:col-span-4",
-                image: "/assets/projects/crm.png",
-                log: "LOG_022 // CRM_SYSTEM",
-                title: "CRM PLATFORM",
-                link: "https://crm.ceoitbox.com",
-                description: "Production-ready CRM with Sales and Marketing modules deployed on Ubuntu with automated lead capture, intelligent contact segmentation, and event-driven messaging workflows. Optimized with NGINX, PM2, and scalable REST architecture.",
+                image: "/assets/projects/assistant.png",
+                log: "LOG_022 // RAG_PIPELINE",
+                title: "SCALABLE RAG PIPELINE",
+                description: "Built a robust RAG ingestion pipeline supporting PDFs, DOCs, CSVs, and website crawling with configurable chunking, vector embeddings, contextual retrieval, and advanced tool calling capabilities.",
                 tags: [
-                    { label: "NGINX", theme: "white" },
-                    { label: "PM2", theme: "white" }
+                    { label: "VECTOR_DB", theme: "white" },
+                    { label: "FASTAPI", theme: "white" },
+                    { label: "TOOL_CALLING", theme: "secondary" }
                 ],
                 metrics: [
-                    { value: "1000+", label: "CONTACTS", theme: "primary" },
-                    { value: "AI", label: "Analysis and Template Generation", theme: "secondary" }
+                    { value: "RAG", label: "Ingestion Engine", theme: "primary" },
+                    { value: "Multimodal", label: "File Parsers", theme: "secondary" }
                 ],
                 theme: "secondary"
             },
             {
                 id: "3",
                 colSpan: "md:col-span-12",
-                image: "/assets/projects/attendix.png",
-                log: "LOG_031 // ATTENDIX",
-                title: "ATTENDIX",
-                link: "https://attendix.in",
+                image: "/assets/projects/notes.png",
+                log: "LOG_033 // PRODUCTION_LMS",
+                title: "PRODUCTION-GRADE LMS",
                 titleGlow: "primary",
-                description: "Attendance management ecosystem with official Android app and web platform. Features real-time tracking, secure authentication, location-aware attendance, and enterprise-ready UI/UX aligned with biometric and geo-validation workflows.",
+                description: "Led frontend development of a production-grade LMS using React.js serving over 5000+ active students. Included mock tests, custom practice modes, detailed visual analytics, and scalable dashboard components.",
                 features: [
-                    { icon: "verified_user", label: "BIOMETRIC_ATTENDANCE", theme: "primary" },
-                    { icon: "smartphone", label: "ANDROID_APP", theme: "secondary" },
-                    { icon: "₹", label: "PAYROLL_CALCULATION", theme: "white" },
-                    { icon: "people_alt", label: "LEAVE_MANAGEMENT", theme: "primary" }
+                    { icon: "school", label: "5000+_ACTIVE_STUDENTS", theme: "primary" },
+                    { icon: "dashboard", label: "ANALYTICS_DASHBOARD", theme: "secondary" },
+                    { icon: "verified", label: "MOCK_EXAMS_ENGINE", theme: "white" }
                 ],
                 theme: "primary"
             },
             {
                 id: "4",
                 colSpan: "md:col-span-12",
-                image: "/assets/projects/assistant.png",
-                log: "LOG_045 // AI_ASSISTANT",
-                link: "https://assistant.ceoitbox.com",
-                title: "CBX AI ASSISTANT",
+                image: "/assets/projects/tasks.png",
+                log: "LOG_044 // TASK_DELEGATION",
+                title: "TASK DELEGATION SaaS PLATFORM",
                 titleGlow: "secondary",
-                description: "Advanced AI assistant system with WhatsApp integration enabling cross-platform task execution. Built using RAG pipelines with LangChain, Redis, and ChromaDB vector storage. Seamlessly integrates with internal systems for unified command execution.",
+                description: "Architected a collaborative Task Delegation SaaS platform serving 200+ organizations and 800+ users, managing over 12,000+ tasks via microservices. Includes real-time analytics and scalable state management.",
                 features: [
-                    { icon: "chat", label: "WHATSAPP_INTEGRATION", theme: "secondary" },
-                    { icon: "memory", label: "VECTOR_RAG", theme: "primary" }
-                ],
-                tags: [
-                    { label: "LANGCHAIN", theme: "secondary" },
-                    { label: "VECTOR_RAG", theme: "primary" },
-                    { label: "WHATSAPP_INTEGRATION", theme: "secondary" },
-                    { label: "REDIS", theme: "primary" },
-                    { label: "CHROMA_DB", theme: "secondary" }
+                    { icon: "group", label: "200+_ORGANIZATIONS", theme: "secondary" },
+                    { icon: "analytics", label: "REALTIME_METRICS", theme: "primary" }
                 ],
                 theme: "secondary"
             },
             {
                 id: "5",
                 colSpan: "md:col-span-6",
-                image: "/assets/projects/start.png",
-                link: "https://chromewebstore.google.com/detail/cbx-start-your-digital-hq/lokabogchepccgkelgbadnchlaanoocd",
-                log: "LOG_058 // CHROME_EXTENSION",
-                title: "CBX START (CHROME EXTENSION)",
-                description: "Custom Chrome new-tab replacement inspired by start.me. Features widget-based dashboard, productivity tools, search integration, and local-first storage architecture with optional cloud sync.",
+                image: "/assets/projects/attendix.png",
+                log: "LOG_055 // MATCHVATCH_APP",
+                link: "https://matchvatch.com/",
+                title: "MATCHVATCH (DATING STARTUP)",
+                description: "Co-built a startup dating platform. Engineered the Fastify backend using MySQL and contributed to the iOS mobile application using React Native, focusing on scalable APIs, real-time interactions, and secure data flow.",
                 tags: [
-                    { label: "CHROME_API", theme: "primary" },
-                    { label: "WIDGET_SYSTEM", theme: "secondary" }
+                    { label: "FASTIFY", theme: "primary" },
+                    { label: "MYSQL", theme: "secondary" },
+                    { label: "REACT_NATIVE", theme: "primary" }
                 ],
                 theme: "tertiary"
             },
             {
                 id: "6",
                 colSpan: "md:col-span-6",
-                image: "/assets/projects/tasks.png",
-                log: "LOG_063 // TASK_SYSTEM",
-                link: "https://task.ceoitbox.com",
-                title: "TASK DELEGATION SYSTEM",
-                description: "Collaborative task delegation platform with role-based assignments, status tracking, priority management, and real-time updates. Designed for internal team productivity and structured workflow execution.",
+                image: "/assets/projects/start.png",
+                log: "LOG_066 // ECOMMERCE_MARKET",
+                link: "https://ecom-l278.onrender.com/",
+                title: "MULTI-SELLER E-COMMERCE",
+                description: "Built a scalable multi-seller marketplace with seller dashboards, visual product management, real-time order notifications, analytics, and role-based access control.",
                 tags: [
-                    { label: "COLLABORATION", theme: "primary" },
-                    { label: "REALTIME", theme: "secondary" },
-                    { label: "REACT_QUERY", theme: "primary" },
-
+                    { label: "MONGODB", theme: "primary" },
+                    { label: "EXPRESS", theme: "secondary" },
+                    { label: "REACT.JS", theme: "primary" }
                 ],
                 theme: "primary"
-            },
-            {
-                id: "7",
-                colSpan: "md:col-span-12",
-                image: "/assets/projects/notes.png",
-                log: "LOG_077 // NOTES_SYSTEM",
-                link: "https://notes.ceoitbox.com",
-                title: "CBX-NOTES",
-                titleGlow: "primary",
-                description: "Deep note-taking system supporting multi-field architecture, live collaboration, location-based reminders, handwriting recognition, image editing, and hierarchical label sharing. Designed as a high-performance productivity engine.",
-                features: [
-                    { icon: "edit_note", label: "IMAGE_EDITOR", theme: "primary" },
-                    { icon: "location_on", label: "LOCATION_REMINDERS", theme: "secondary" },
-                ],
-                theme: "primary"
-            },
-            {
-                id: "8",
-                colSpan: "md:col-span-12",
-                image: "/assets/projects/notes-extension.png",
-                log: "LOG_081 // NOTES_EXTENSION",
-                link: "https://chromewebstore.google.com/detail/cbxnotes/pmjfckcloiplfdghfgklkabdigjencfj",
-                title: "NOTES CHROME SIDEBAR EXTENSION",
-                description: "Chrome sidebar extension enabling instant access to the notes platform without context switching. Built for speed, minimal friction, and seamless sync with the core notes ecosystem.",
-                features: [
-                    { icon: "bolt", label: "INSTANT_ACCESS", theme: "primary" },
-                    { icon: "sync", label: "REALTIME_SYNC", theme: "secondary" }
-                ],
-                theme: "secondary"
             }
         ]
     },
@@ -285,24 +164,24 @@ export const portfolioData = {
         items: [
             {
                 status: "CURRENT_SESSION",
-                date: "DEC 2024 - PRESENT",
-                role: "FULL STACK DEV | AI AUTOMATION",
-                company: "CEOITBOX | DELHI, INDIA",
-                description: "Deployed scalable full-stack applications with 99.9% uptime. Architected RESTful APIs optimizing response latency by 35%. Built AI-driven WhatsApp integrations.",
+                date: "JUNE 2025 - PRESENT",
+                role: "SOFTWARE DEVELOPER",
+                company: "KC GLOBED | DELHI, INDIA",
+                description: "Developed multi-tenant AI SaaS agent platform & scalable RAG document parser with tool calling. Built React.js LMS for 5000+ students. Optimized Next.js SSR Web Vitals, achieving 30% LCP improvement.",
                 theme: "primary"
             },
             {
-                date: "JUNE 2024 - DEC 2024",
-                role: "SOFTWARE DEV INTERN",
-                company: "CEOITBOX | REMOTE",
-                description: "Developed highly sophisticated cbxnotes currently serving over 1200+ users and improved backend API latency by 30%. Executed integration testing extending code coverage beyond 80%.",
+                date: "JAN 2024 - JUNE 2025",
+                role: "ASSOCIATE SOFTWARE DEVELOPER",
+                company: "CEOITBOX | DELHI, INDIA",
+                description: "Designed a role-based Helpdesk SaaS scaling to 16,000+ tickets. Created conversational AI support agent. Architected Task Delegation SaaS platform serving 200+ organizations and 12,000+ tasks.",
                 theme: "secondary"
             },
             {
-                date: "FEB 2023 - APRIL 2024",
-                role: "SOFTWARE ENGINEER",
-                company: "ICFDR (NGO) | FULL-TIME | REMOTE",
-                description: "Authored front-end and back-end logic for a dedicated donation web application, integrating reliable Razorpay processing for over 500+ successful transactions.",
+                date: "JUNE 2023 - DEC 2023",
+                role: "SDE INTERN",
+                company: "CEOITBOX | DELHI, INDIA",
+                description: "Developed CBXMEET scheduling platform supporting 80+ users and 4,300+ meetings integrated with Google OAuth/Calendar. Built HR Feedback System serving 50+ users.",
                 theme: "tertiary"
             }
         ]
@@ -310,16 +189,15 @@ export const portfolioData = {
     skills: {
         label: "// STACK_DUMP",
         title: "CORE_TECH",
-        description: "Weaponizing high-fidelity frameworks to achieve maximum operational velocity. Every byte in the stack is prioritized for scalability and robust deployments.",
+        description: "Weaponizing production-grade frameworks to build scalable multi-tenant platforms, high-performance RAG pipelines, and beautiful responsive frontends.",
         loadingText: "_LOADING_SYSTEM_CAPABILITIES...",
         items: [
-            { icon: "category", name: "JAVASCRIPT/TS", readout: "REACT, REACT NATIVE, NEXT.JS, ANGULAR", theme: "primary" },
-            { icon: "database", name: "DATABASE", readout: "MONGODB, POSTGRESQL, CHROMA_DB, REDIS", theme: "tertiary" },
-            { icon: "cloud", name: "CLOUD/DEVOPS", readout: "GCP, AWS, DOCKER, NGINX, VERCEL", theme: "secondary" },
-            { icon: "memory", name: "SYSTEM DESIGN", readout: "MICROSERVICES, DISTRIBUTED", theme: "primary" },
-            { icon: "psychology", name: "AI / AUTOMATION", readout: "RAG, LANGCHAIN, VECTOR DB, WORKFLOWS", theme: "secondary" },
-            { icon: "verified", name: "ENGINEERING", readout: "CI/CD, TESTING (JEST/MOCHA), JWT/OAUTH, PERFORMANCE", theme: "tertiary" }
-
+            { icon: "category", name: "LANGUAGES", readout: "JAVASCRIPT, TYPESCRIPT, PYTHON, LATEX", theme: "primary" },
+            { icon: "hub", name: "FRAMEWORKS", readout: "REACT, NEXT.JS, NUXT.JS, NODE, FASTAPI, FASTIFY", theme: "secondary" },
+            { icon: "database", name: "DATABASES", readout: "MONGODB, POSTGRESQL, MYSQL, VECTOR DB, REDIS", theme: "tertiary" },
+            { icon: "psychology", name: "AI/LLM ENG", readout: "RAG PIPELINES, EMBEDDINGS, TOOL CALLING, PROMPTS", theme: "primary" },
+            { icon: "cloud", name: "CLOUD & DEVOPS", readout: "AWS, GCP, CLOUD RUN, DOCKER, JENKINS, CI/CD", theme: "secondary" },
+            { icon: "verified", name: "ENGINEERING", readout: "TAILWIND CSS, REDUX, SSR, REACT NATIVE, RBAC", theme: "tertiary" }
         ]
     },
     contact: {
@@ -328,7 +206,7 @@ export const portfolioData = {
         titleHighlight: "LINK",
         form: {
             namePlaceholder: "IDENTIFY_YOURSELF",
-            emailPlaceholder: "EMAIL@DOMAIN.IO",
+            emailPlaceholder: "sunraz1666@gmail.com",
             messagePlaceholder: "DESCRIBE_YOUR_REQUIREMENTS...",
             submitText: "SEND_TRANSMISSION",
             status: "PACKET_STATUS: READY",
@@ -336,14 +214,14 @@ export const portfolioData = {
         }
     },
     footer: {
-        logoPrefix: "ISHAN",
+        logoPrefix: "SUNEEL",
         logoSuffix: ".SYS",
-        copyright: "© 2025 ISHAN YADAV_OVERRIDE_ACTIVE",
+        copyright: "© 2026 SUNEEL KUMAR_OVERRIDE_ACTIVE",
         tagline: "Crafted in the neon underground.",
         links: [
-            { label: "GITHUB", href: "https://github.com/ishanyadav13290" },
-            { label: "LINKEDIN", href: "https://linkedin.com/in/ishan-yadav-5306851ba" },
-            { label: "PORTFOLIO", href: "https://ishan-yadav-portfolio" }
+            { label: "GITHUB", href: "https://github.com/suneel7351" },
+            { label: "LINKEDIN", href: "https://www.linkedin.com/in/suneel7351" },
+            { label: "PORTFOLIO", href: "https://cbxit.in/me" }
         ]
     }
 };
