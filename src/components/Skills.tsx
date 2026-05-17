@@ -27,7 +27,7 @@ export const Skills = () => {
                         </div>
                     </motion.div>
                     
-                    <div className="grid grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {items.map((skill, idx) => (
                             <motion.div 
                                 key={idx}
