@@ -65,7 +65,7 @@ export const portfolioData = {
     projects: {
         label: "// SELECT_ARCHIVES",
         title: "Project_Logs",
-        readout: `SCANNING_DRIVE_C:/PROJECTS...\n10_ENTRIES_FOUND`,
+        readout: `SCANNING_DRIVE_C:/PROJECTS...\n11_ENTRIES_FOUND`,
         items: [
             {
                 id: "1",
@@ -217,6 +217,20 @@ export const portfolioData = {
                     { label: "REACT.JS", theme: "primary" }
                 ],
                 theme: "primary"
+            },
+            {
+                id: "11",
+                colSpan: "md:col-span-6",
+                log: "LOG_077 // EXAM_PORTAL",
+                link: "https://exam.kcglobed.com/",
+                title: "PROCTORED EXAM PORTAL",
+                description: "Built an online assessment and certification portal with proctored, timed exams. Includes question banks, MCQ tests with negative marking, candidate results, and admin analytics.",
+                tags: [
+                    { label: "REACT.JS", theme: "primary" },
+                    { label: "PROCTORING", theme: "secondary" },
+                    { label: "QUESTION_BANK", theme: "tertiary" }
+                ],
+                theme: "secondary"
             }
         ]
     },

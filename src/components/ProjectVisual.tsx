@@ -204,6 +204,32 @@ const LearningDashboard = () => (
     </>
 );
 
+const ExamPortal = () => (
+    <>
+        <Wire d="M294 90 H316" />
+        <Wire d="M294 226 H346" delay={0.5} />
+        <rect x={24} y={30} width={270} height={270} className="sch-box" />
+        <rect x={42} y={46} width={234} height={8} className="sch-soft sch-grow" />
+        {[0, 1, 2, 3].map((row) => (
+            <g key={row}>
+                <rect x={42} y={72 + row * 56} width={row % 2 ? 150 : 196} height={8} className="sch-soft" />
+                {[0, 1, 2, 3].map((option) => (
+                    <circle key={option} cx={50 + option * 56} cy={98 + row * 56} r={7} className="sch-wire" />
+                ))}
+                <circle cx={50 + ((row * 3 + 1) % 4) * 56} cy={98 + row * 56} r={7} className="sch-solid sch-twinkle" style={{ animationDelay: `${row * 0.7}s` }} />
+            </g>
+        ))}
+        <rect x={316} y={30} width={140} height={120} className="sch-box" />
+        <circle cx={386} cy={72} r={18} className="sch-soft" />
+        <path d="M352 134 a34 26 0 0 1 68 0" className="sch-soft" />
+        <path d="M326 44 H446" className="sch-pulse sch-scan" style={{ strokeDasharray: "none", strokeWidth: 1.5 }} />
+        <text x={386} y={170} textAnchor="middle">PROCTORING</text>
+        <circle cx={386} cy={226} r={40} className="sch-wire" strokeWidth={8} />
+        <circle cx={386} cy={226} r={40} pathLength={100} className="sch-ring" transform="rotate(-90 386 226)" />
+        <text x={386} y={292} textAnchor="middle">TIMED</text>
+    </>
+);
+
 const schematics: Record<string, ComponentType> = {
     AI_AGENT_SAAS: AgentPlatform,
     RAG_PIPELINE: RagPipeline,
@@ -215,6 +241,7 @@ const schematics: Record<string, ComponentType> = {
     NUXT_EXAMS: ExamSlots,
     MATCHVATCH_APP: MatchFlow,
     ECOMMERCE_MARKET: MarketHub,
+    EXAM_PORTAL: ExamPortal,
 };
 
 // Each project gets an animated schematic of how it works.

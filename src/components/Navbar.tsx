@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 import { ease } from "../lib/motion";
+
+const plainLabel = (label: string) => label.replace("// ", "");
 
 export const Navbar = () => {
     const { logo, links, cta } = portfolioData.navbar;
@@ -48,23 +51,25 @@ export const Navbar = () => {
         return () => { document.body.style.overflow = ""; };
     }, [menuOpen]);
 
+    const elevated = scrolled || menuOpen;
+
     return (
         <>
-            <nav className={`fixed top-0 w-full z-50 border-b transition-colors duration-500 ${scrolled || menuOpen ? "bg-background/85 backdrop-blur-md border-primary/20" : "bg-transparent border-transparent"}`}>
-                <div className="flex justify-between items-center px-5 sm:px-8 py-4 max-w-7xl mx-auto">
+            <nav className="fixed top-3 inset-x-0 z-50 px-3">
+                <div className={`relative max-w-7xl mx-auto grid grid-cols-[1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center gap-4 px-2 sm:px-5 min-[81.5rem]:px-8 py-2 border transition-colors duration-500 ${elevated ? "bg-background/80 backdrop-blur-md border-white/10" : "bg-transparent border-transparent"}`}>
                     <motion.a
                         href="#hero"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease }}
-                        className="text-sm sm:text-lg font-black tracking-[0.18em] text-[#d98bff] font-headline flex items-center gap-1.5 select-none"
+                        className="justify-self-start text-sm sm:text-base font-bold tracking-[0.1em] text-white font-headline flex items-center gap-1 select-none"
                     >
                         <span className="text-secondary">[</span>
                         {logo.replace("[", "").replace("]", "")}
                         <span className="text-secondary">]</span>
                     </motion.a>
 
-                    <div className="hidden md:flex gap-8 items-center">
+                    <div className="hidden md:flex justify-self-end lg:justify-self-auto items-center gap-1">
                         {links.map((link, idx) => (
                             <motion.a
                                 key={link.href}
@@ -72,14 +77,14 @@ export const Navbar = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: idx * 0.07, duration: 0.7, ease }}
                                 aria-current={active === link.href ? "true" : undefined}
-                                className={`relative py-1 font-label text-xs tracking-tight uppercase transition-colors duration-300 ${active === link.href ? "text-secondary" : "text-slate-400 hover:text-white"}`}
+                                className={`relative isolate px-3 lg:px-4 py-2 font-label text-xs tracking-wider uppercase transition-colors duration-300 ${active === link.href ? "text-secondary" : "text-slate-400 hover:text-white"}`}
                                 href={link.href}
                             >
-                                {link.label}
+                                {plainLabel(link.label)}
                                 {active === link.href && (
                                     <motion.span
                                         layoutId="nav-active"
-                                        className="absolute -bottom-1 left-0 right-0 h-px bg-secondary"
+                                        className="absolute inset-0 -z-10 bg-secondary/10 border border-secondary/30"
                                         transition={{ type: "spring", stiffness: 380, damping: 36 }}
                                     />
                                 )}
@@ -91,19 +96,19 @@ export const Navbar = () => {
                         href="#contact"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
                         transition={{ type: "spring", stiffness: 320, damping: 24 }}
-                        className="hidden md:inline-flex btn btn-primary px-5 py-2.5 text-[0.6875rem]"
+                        className="group hidden lg:inline-flex justify-self-end btn gap-2 px-4 py-2.5 text-[0.6875rem] text-white border border-primary/60 hover:bg-primary hover:border-primary"
                     >
                         {cta}
+                        <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                     </motion.a>
 
                     <button
                         aria-label={menuOpen ? "Close menu" : "Open menu"}
                         aria-expanded={menuOpen}
                         onClick={() => setMenuOpen((open) => !open)}
-                        className="md:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 -mr-2 cursor-pointer"
+                        className="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 cursor-pointer"
                     >
                         <motion.span
                             animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
@@ -121,9 +126,9 @@ export const Navbar = () => {
                             className="block h-[2px] w-6 bg-secondary origin-center"
                         />
                     </button>
-                </div>
 
-                <motion.div style={{ scaleX: progress }} className="absolute bottom-[-1px] left-0 right-0 h-px origin-left bg-gradient-to-r from-primary via-secondary to-tertiary" />
+                    <motion.div style={{ scaleX: progress }} className="absolute bottom-[-1px] left-0 right-0 h-px origin-left bg-gradient-to-r from-primary via-secondary to-tertiary" />
+                </div>
             </nav>
 
             <AnimatePresence>
@@ -145,7 +150,7 @@ export const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -16 }}
                             transition={{ duration: 0.4, ease }}
-                            className="fixed top-[77px] left-0 right-0 z-50 md:hidden bg-background border-b border-primary/20 px-6 pt-4 pb-8 flex flex-col gap-6"
+                            className="fixed top-[72px] inset-x-3 z-50 md:hidden bg-background border border-white/10 px-5 pt-2 pb-6 flex flex-col gap-5"
                         >
                             <div className="flex flex-col">
                                 {links.map((link, idx) => (
@@ -158,7 +163,7 @@ export const Navbar = () => {
                                         onClick={() => setMenuOpen(false)}
                                         className={`font-label text-sm uppercase py-4 border-b border-primary/10 last:border-0 ${active === link.href ? "text-secondary" : "text-slate-300"}`}
                                     >
-                                        {link.label}
+                                        {plainLabel(link.label)}
                                     </motion.a>
                                 ))}
                             </div>

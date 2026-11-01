@@ -363,6 +363,7 @@
   transform-origin: center;
   animation: sch-ping 2.8s var(--ease-out) infinite;
 }
+.schematic .sch-scan { animation: sch-scan 3.2s ease-in-out infinite alternate; }
 .sch-swipe { transform-box: fill-box; transform-origin: bottom center; animation: sch-swipe 4.8s var(--ease-out) infinite; }
 
 @keyframes sch-flow { to { stroke-dashoffset: -48; } }
@@ -377,6 +378,7 @@
 }
 @keyframes sch-ring { from { stroke-dashoffset: 76; } to { stroke-dashoffset: 16; } }
 @keyframes sch-ping { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.5); opacity: 0; } }
+@keyframes sch-scan { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 94px, 0); } }
 @keyframes sch-swipe {
   0%, 20% { transform: translate3d(0, 0, 0) rotate(0); opacity: 1; }
   48%, 100% { transform: translate3d(90px, -8px, 0) rotate(12deg); opacity: 0; }
