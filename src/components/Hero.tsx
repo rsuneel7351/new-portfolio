@@ -1,79 +1,108 @@
-import { motion } from "framer-motion";
+import { useRef, type PointerEvent, type ReactNode } from "react";
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { Download } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
+import { ease, reveal, stagger } from "../lib/motion";
+import { SignalField } from "./SignalField";
 
-export const Hero = () => {
-    const { status, title, subtitle, highlight, tags, primaryAction, secondaryAction } = portfolioData.hero;
+const titleLine = {
+    hidden: { y: "108%" },
+    show: { y: 0, transition: { duration: 1.2, ease } },
+};
+
+const Magnetic = ({ className, children, ...link }: { className: string; children: ReactNode; href: string; target?: string; rel?: string }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const springX = useSpring(x, { stiffness: 220, damping: 18, mass: 0.4 });
+    const springY = useSpring(y, { stiffness: 220, damping: 18, mass: 0.4 });
+
+    const handleMove = (event: PointerEvent<HTMLAnchorElement>) => {
+        if (event.pointerType !== "mouse") return;
+        const rect = event.currentTarget.getBoundingClientRect();
+        x.set((event.clientX - rect.left - rect.width / 2) * 0.18);
+        y.set((event.clientY - rect.top - rect.height / 2) * 0.28);
+    };
+
+    const handleLeave = () => {
+        x.set(0);
+        y.set(0);
+    };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden grid-bg" id="hero">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/60 to-background"></div>
-            <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[160px] animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary/15 rounded-full blur-[160px]"></div>
-            
-            <div className="relative z-10 max-w-6xl mx-auto px-8 text-center">
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-4 px-4 py-2 bg-surface-container border border-secondary/40 mb-8 relative"
-                >
-                    <div className="hud-tl"></div><div className="hud-tr"></div><div className="hud-bl"></div><div className="hud-br"></div>
-                    <span className="w-2 h-2 bg-tertiary shadow-[0_0_10px_#00ff9f]"></span>
-                    <span className="text-[10px] font-label uppercase tracking-[0.3em] text-secondary">{status}</span>
-                </motion.div>
-                
-                <motion.h1 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    className="text-6xl md:text-9xl font-headline font-black tracking-tighter text-white mb-8 leading-none glitch-text" 
-                    data-text={title}
-                >
-                    {subtitle} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary text-glow-primary">{highlight}</span>
-                </motion.h1>
-                
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="flex items-center justify-center gap-4 mb-12"
-                >
-                    <div className="h-px w-20 bg-secondary/30"></div>
-                    <p className="text-lg md:text-xl text-on-surface-variant font-label font-light tracking-widest uppercase">
-                        {tags.map((tag, idx) => (
-                            <span key={idx}>
-                                <span className={`text-${tag.type} font-bold`}>{tag.text}</span>
-                                {idx < tags.length - 1 && " // "}
-                            </span>
+        <motion.div variants={reveal}>
+            <motion.a {...link} style={{ x: springX, y: springY }} onPointerMove={handleMove} onPointerLeave={handleLeave} className={`${className} w-full sm:w-auto`}>
+                {children}
+            </motion.a>
+        </motion.div>
+    );
+};
+
+export const Hero = () => {
+    const { status, title, subtitle, highlight, tags, primaryAction, resumeAction, secondaryAction } = portfolioData.hero;
+    const sectionRef = useRef<HTMLElement | null>(null);
+
+    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+    const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
+    const contentY = useTransform(progress, [0, 1], [0, -120]);
+    const contentOpacity = useTransform(progress, [0, 0.7], [1, 0]);
+    const fieldY = useTransform(progress, [0, 1], [0, 90]);
+
+    return (
+        <section ref={sectionRef} className="relative min-h-svh flex items-center pt-28 pb-24 overflow-hidden" id="hero">
+            <motion.div style={{ y: fieldY }} className="absolute inset-0">
+                <SignalField className="absolute inset-0 w-full h-full" />
+            </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/15 to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background"></div>
+
+            <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8">
+                <motion.div variants={stagger(0.12, 0.15)} initial="hidden" animate="show">
+                    <motion.div variants={reveal} className="inline-flex items-center gap-3 px-4 py-2 mb-8 border border-secondary/30 bg-surface-container/70 relative">
+                        <span className="pulse-dot w-2 h-2 rounded-full bg-tertiary"></span>
+                        <span className="text-[0.6875rem] font-label uppercase tracking-[0.22em] text-secondary">{status}</span>
+                    </motion.div>
+
+                    <h1 aria-label={title} className="font-headline font-black tracking-tight leading-[1.02] text-white text-[clamp(2.25rem,12vw,8.5rem)] mb-8">
+                        <span aria-hidden="true" className="block overflow-hidden pb-[0.06em]">
+                            <motion.span variants={titleLine} className="block">{subtitle}</motion.span>
+                        </span>
+                        <span aria-hidden="true" className="block overflow-hidden pb-[0.06em]">
+                            <motion.span variants={titleLine} className="block text-gradient">{highlight}</motion.span>
+                        </span>
+                    </h1>
+
+                    <motion.ul variants={stagger(0.07)} className="flex flex-wrap gap-2.5 mb-10">
+                        {tags.map((tag) => (
+                            <motion.li key={tag.text} variants={reveal} className={`chip accent-${tag.type} bg-background text-xs px-3 py-1.5`}>
+                                {tag.text}
+                            </motion.li>
                         ))}
-                    </p>
-                    <div className="h-px w-20 bg-secondary/30"></div>
+                    </motion.ul>
+
+                    <motion.div variants={stagger(0.08)} className="flex flex-col sm:flex-row flex-wrap gap-4">
+                        <Magnetic className="btn btn-primary" href={primaryAction.href}>
+                            {primaryAction.label}
+                        </Magnetic>
+                        <Magnetic className="btn btn-ghost" href={resumeAction.href}>
+                            <Download className="w-4 h-4" aria-hidden="true" />
+                            {resumeAction.label}
+                        </Magnetic>
+                        <Magnetic className="btn btn-ghost border-white/20 text-slate-300 hover:text-white" href={secondaryAction.href}>
+                            {secondaryAction.label}
+                        </Magnetic>
+                    </motion.div>
                 </motion.div>
-                
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="flex flex-col md:flex-row gap-6 justify-center"
-                >
-                    <a className="px-10 py-5 bg-primary text-white font-headline text-sm tracking-[0.2em] shadow-[0_0_30px_rgba(188,19,254,0.4)] hover:shadow-primary/60 transition-all border border-primary uppercase" href={primaryAction.href}>
-                        {primaryAction.label}
-                    </a>
-                    <a className="px-10 py-5 glass-panel text-secondary font-headline text-sm tracking-[0.2em] border border-secondary/50 hover:bg-secondary/10 transition-all uppercase" href={secondaryAction.href}>
-                        {secondaryAction.label}
-                    </a>
-                </motion.div>
-                
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.4 }}
-                    transition={{ delay: 1, duration: 1 }}
-                    className="mt-20 flex flex-col items-center gap-2"
-                >
-                    <div className="tech-readout">SCROLL_TO_DESCEND</div>
-                    <div className="w-px h-16 bg-gradient-to-b from-secondary to-transparent"></div>
-                </motion.div>
-            </div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.4, duration: 1 }}
+                className="absolute bottom-6 right-5 sm:right-8 xl:right-[max(2rem,calc((100vw-80rem)/2+2rem))] hidden sm:flex items-center gap-3"
+            >
+                <div className="tech-readout">SCROLL_TO_DESCEND</div>
+                <div className="scroll-cue w-px h-12 bg-gradient-to-b from-secondary to-transparent"></div>
+            </motion.div>
         </section>
     );
 };

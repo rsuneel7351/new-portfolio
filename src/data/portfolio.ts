@@ -1,3 +1,5 @@
+const resumeUrl = "https://drive.google.com/uc?export=download&id=1HdxvvybM6G2MKjZi8169rzpDZdIt67Qw";
+
 export const portfolioData = {
     navbar: {
         logo: "[SUNEEL_KUMAR]",
@@ -22,6 +24,7 @@ export const portfolioData = {
             { text: "SYSTEM DESIGN", type: "secondary" }
         ],
         primaryAction: { label: "Access_Projects", href: "#projects" },
+        resumeAction: { label: "Download_Resume", href: resumeUrl },
         secondaryAction: { label: "Contact_Operator", href: "#contact" }
     },
     about: {
@@ -62,12 +65,12 @@ export const portfolioData = {
     projects: {
         label: "// SELECT_ARCHIVES",
         title: "Project_Logs",
-        readout: `SCANNING_DRIVE_C:/PROJECTS...\n6_ENTRIES_FOUND`,
+        readout: `SCANNING_DRIVE_C:/PROJECTS...\n10_ENTRIES_FOUND`,
         items: [
             {
                 id: "1",
                 colSpan: "md:col-span-8",
-                image: "/assets/projects/flow.png",
+                image: "/assets/saas-agent.png",
                 log: "LOG_011 // AI_AGENT_SAAS",
                 title: "AI-POWERED SaaS AGENT PLATFORM",
                 tags: [
@@ -100,7 +103,7 @@ export const portfolioData = {
             {
                 id: "3",
                 colSpan: "md:col-span-12",
-                image: "/assets/projects/notes.png",
+                image: "/assets/LMS.png",
                 log: "LOG_033 // PRODUCTION_LMS",
                 title: "PRODUCTION-GRADE LMS",
                 titleGlow: "primary",
@@ -128,9 +131,68 @@ export const portfolioData = {
             },
             {
                 id: "5",
+                colSpan: "md:col-span-8",
+                image: "/assets/projects/notes.png",
+                log: "LOG_045 // AI_ADMIN_DASH",
+                title: "CONVERSATIONAL AI ADMIN DASHBOARD",
+                description: "Developed conversational AI admin workflows enabling natural language platform analytics, visual operations insights, and automated platform reports. Removed manual filters and engineering overhead.",
+                tags: [
+                    { label: "REACT.JS", theme: "primary" },
+                    { label: "FASTAPI", theme: "secondary" },
+                    { label: "NATURAL_LANGUAGE_QL", theme: "tertiary" }
+                ],
+                theme: "tertiary"
+            },
+            {
+                id: "6",
+                colSpan: "md:col-span-4",
+                image: "/assets/helpdesk.png",
+                log: "LOG_048 // HELPDESK_SAAS",
+                title: "HELPDESK SaaS PLATFORM",
+                description: "Designed a role-based customer helpdesk SaaS with ticket escalation logic, SLA automations, and ticket lifecycle tracking. Scaled to process over 16,000+ support tickets.",
+                tags: [
+                    { label: "NODE.JS", theme: "white" },
+                    { label: "MONGODB", theme: "white" },
+                    { label: "RBAC", theme: "secondary" }
+                ],
+                metrics: [
+                    { value: "16K+", label: "SUPPORT_TICKETS", theme: "primary" }
+                ],
+                theme: "primary"
+            },
+            {
+                id: "7",
+                colSpan: "md:col-span-6",
+                image: "/assets/projects/notes-extension.png",
+                log: "LOG_051 // NEXTJS_CMS",
+                title: "SEO-OPTIMIZED SSR Next.js WEBSITE",
+                description: "Developed an SEO-optimized Server-Side Rendered (SSR) website using Next.js with admin-controlled CMS management. Improved Core Web Vitals (LCP) by 30% and achieved 40% faster rendering.",
+                tags: [
+                    { label: "NEXT.JS", theme: "secondary" },
+                    { label: "SSR", theme: "primary" },
+                    { label: "LCP_OPTIMIZATION", theme: "tertiary" }
+                ],
+                theme: "secondary"
+            },
+            {
+                id: "8",
+                colSpan: "md:col-span-6",
+                image: "/assets/projects/start.png",
+                log: "LOG_055 // NUXT_EXAMS",
+                title: "ONBOARDING & EXAMINATION ENGINE",
+                description: "Built a high-concurrency exam booking and onboarding platform using Nuxt.js. Integrated Razorpay and Cashfree payment systems, slot reservation flows, and robust admin systems.",
+                tags: [
+                    { label: "NUXT.JS", theme: "tertiary" },
+                    { label: "RAZORPAY", theme: "primary" },
+                    { label: "CASHFREE", theme: "secondary" }
+                ],
+                theme: "tertiary"
+            },
+            {
+                id: "9",
                 colSpan: "md:col-span-6",
                 image: "/assets/projects/attendix.png",
-                log: "LOG_055 // MATCHVATCH_APP",
+                log: "LOG_058 // MATCHVATCH_APP",
                 link: "https://matchvatch.com/",
                 title: "MATCHVATCH (DATING STARTUP)",
                 description: "Co-built a startup dating platform. Engineered the Fastify backend using MySQL and contributed to the iOS mobile application using React Native, focusing on scalable APIs, real-time interactions, and secure data flow.",
@@ -142,7 +204,7 @@ export const portfolioData = {
                 theme: "tertiary"
             },
             {
-                id: "6",
+                id: "10",
                 colSpan: "md:col-span-6",
                 image: "/assets/projects/start.png",
                 log: "LOG_066 // ECOMMERCE_MARKET",
@@ -192,7 +254,7 @@ export const portfolioData = {
         description: "Weaponizing production-grade frameworks to build scalable multi-tenant platforms, high-performance RAG pipelines, and beautiful responsive frontends.",
         loadingText: "_LOADING_SYSTEM_CAPABILITIES...",
         items: [
-            { icon: "category", name: "LANGUAGES", readout: "JAVASCRIPT, TYPESCRIPT, PYTHON, LATEX", theme: "primary" },
+            { icon: "category", name: "LANGUAGES", readout: "JAVASCRIPT, TYPESCRIPT, PYTHON", theme: "primary" },
             { icon: "hub", name: "FRAMEWORKS", readout: "REACT, NEXT.JS, NUXT.JS, NODE, FASTAPI, FASTIFY", theme: "secondary" },
             { icon: "database", name: "DATABASES", readout: "MONGODB, POSTGRESQL, MYSQL, VECTOR DB, REDIS", theme: "tertiary" },
             { icon: "psychology", name: "AI/LLM ENG", readout: "RAG PIPELINES, EMBEDDINGS, TOOL CALLING, PROMPTS", theme: "primary" },
@@ -206,7 +268,7 @@ export const portfolioData = {
         titleHighlight: "LINK",
         form: {
             namePlaceholder: "IDENTIFY_YOURSELF",
-            emailPlaceholder: "sunraz1666@gmail.com",
+            emailPlaceholder: "rsuneel47@gmail.com",
             messagePlaceholder: "DESCRIBE_YOUR_REQUIREMENTS...",
             submitText: "SEND_TRANSMISSION",
             status: "PACKET_STATUS: READY",
@@ -221,7 +283,7 @@ export const portfolioData = {
         links: [
             { label: "GITHUB", href: "https://github.com/suneel7351" },
             { label: "LINKEDIN", href: "https://www.linkedin.com/in/suneel7351" },
-            { label: "PORTFOLIO", href: "https://cbxit.in/me" }
+            { label: "RESUME", href: resumeUrl }
         ]
     }
 };
