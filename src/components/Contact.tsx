@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, type FormEvent } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CloudCheck, LoaderCircle } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
-import { db } from "../firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { ease, reveal, stagger, viewport } from "../lib/motion";
+import { ScrambleText } from "./ScrambleText";
 
 export const Contact = () => {
     const { label, titlePrefix, titleHighlight, form } = portfolioData.contact;
@@ -14,9 +15,9 @@ export const Contact = () => {
     const [showModal, setShowModal] = useState(false);
     const [feedbackMsg, setFeedbackMsg] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        
+
         if (!name.trim() || !email.trim() || !message.trim()) {
             setFeedbackMsg("CRITICAL_ERROR // ALL FIELDS REQUIRED FOR TRANSMISSION");
             return;
@@ -26,6 +27,12 @@ export const Contact = () => {
         setFeedbackMsg("");
 
         try {
+            // Loaded on demand so Firebase stays out of the initial bundle
+            const [{ db }, { addDoc, collection, serverTimestamp }] = await Promise.all([
+                import("../firebase"),
+                import("firebase/firestore"),
+            ]);
+
             await addDoc(collection(db, "contacts"), {
                 name: name.trim(),
                 email: email.trim(),
@@ -37,152 +44,152 @@ export const Contact = () => {
             setName("");
             setEmail("");
             setMessage("");
-            
+
             // Show cyberpunk success confirmation modal
             setShowModal(true);
-        } catch (error: any) {
+        } catch (error) {
             console.error("Firestore Upload Error: ", error);
-            setFeedbackMsg("CONNECTION_FAILED // ROUTE TIMEOUT: " + (error.message || "FIREBASE_ERROR"));
+            setFeedbackMsg("CONNECTION_FAILED // ROUTE TIMEOUT: " + (error instanceof Error ? error.message : "FIREBASE_ERROR"));
         } finally {
             setIsSending(false);
         }
     };
 
     return (
-        <section className="py-20 md:py-32 bg-background" id="contact">
-            <div className="max-w-5xl mx-auto px-4 sm:px-8 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="glass-panel p-6 sm:p-10 md:p-16 neon-border-primary relative overflow-hidden"
-                >
-                    <div className="hud-tl"></div><div className="hud-tr"></div><div className="hud-bl"></div><div className="hud-br"></div>
-                    <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none hidden sm:block">
-                        <span className="material-symbols-outlined text-[20rem]">alternate_email</span>
-                    </div>
+        <section className="relative py-24 md:py-36" id="contact">
+            <div className="max-w-7xl mx-auto px-5 sm:px-8">
+                <motion.div variants={stagger(0.12)} initial="hidden" whileInView="show" viewport={viewport} className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-20 items-center">
+                    <motion.div variants={reveal}>
+                        <div className="flex items-center gap-4 mb-5">
+                            <span className="h-px w-10 bg-secondary/60"></span>
+                            <ScrambleText text={label} className="eyebrow" />
+                        </div>
+                        <h2 className="font-headline font-black text-white leading-[1.02] text-[clamp(2.25rem,6.6vw,5.25rem)]">
+                            {titlePrefix}<br /><span className="text-gradient">{titleHighlight}</span>
+                        </h2>
+                        <div className="mt-10 grid gap-1.5 tech-readout">
+                            <div>{isSending ? "ESTABLISHING_ROUTING_TABLE..." : form.status}</div>
+                            <div>{form.encryption}</div>
+                        </div>
+                    </motion.div>
 
-                    <div className="relative z-10">
-                        <div className="mb-10">
-                            <span className="text-secondary font-label text-[10px] sm:text-xs uppercase tracking-[0.5em] block mb-3">{label}</span>
-                            <h2 className="text-3xl sm:text-5xl md:text-7xl font-headline font-black text-white leading-none">
-                                {titlePrefix}<span className="text-primary text-glow-primary">{titleHighlight}</span>
-                            </h2>
+                    <motion.form variants={reveal} className="accent-secondary panel relative p-6 sm:p-8 md:p-10 grid gap-6" onSubmit={handleSubmit}>
+                        <div className="hud-tl"></div><div className="hud-tr"></div><div className="hud-bl"></div><div className="hud-br"></div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="field-label" htmlFor="contact-name">SUBJECT_NAME</label>
+                                <input
+                                    id="contact-name"
+                                    className="field"
+                                    placeholder={form.namePlaceholder}
+                                    type="text"
+                                    autoComplete="name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    disabled={isSending}
+                                />
+                            </div>
+                            <div>
+                                <label className="field-label" htmlFor="contact-email">UPLINK_ADDR</label>
+                                <input
+                                    id="contact-email"
+                                    className="field"
+                                    placeholder={form.emailPlaceholder}
+                                    type="email"
+                                    autoComplete="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled={isSending}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="field-label" htmlFor="contact-message">TRANSMISSION_DATA</label>
+                            <textarea
+                                id="contact-message"
+                                className="field resize-y"
+                                placeholder={form.messagePlaceholder}
+                                rows={5}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                disabled={isSending}
+                            ></textarea>
                         </div>
 
-                        <form className="space-y-6 md:space-y-8" onSubmit={handleSubmit}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                                <div className="space-y-2 md:space-y-3">
-                                    <label className="text-[10px] font-label uppercase tracking-[0.3em] text-secondary">SUBJECT_NAME</label>
-                                    <input
-                                        className="w-full bg-black/50 border border-secondary/30 text-white px-4 py-3 md:px-6 md:py-5 font-body focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-white/20 text-sm md:text-base"
-                                        placeholder={form.namePlaceholder}
-                                        type="text"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        disabled={isSending}
-                                    />
-                                </div>
-                                <div className="space-y-2 md:space-y-3">
-                                    <label className="text-[10px] font-label uppercase tracking-[0.3em] text-secondary">UPLINK_ADDR</label>
-                                    <input
-                                        className="w-full bg-black/50 border border-secondary/30 text-white px-4 py-3 md:px-6 md:py-5 font-body focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-white/20 text-sm md:text-base"
-                                        placeholder={form.emailPlaceholder}
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        disabled={isSending}
-                                    />
-                                </div>
-                            </div>
-                            <div className="space-y-2 md:space-y-3">
-                                <label className="text-[10px] font-label uppercase tracking-[0.3em] text-secondary">TRANSMISSION_DATA</label>
-                                <textarea
-                                    className="w-full bg-black/50 border border-secondary/30 text-white px-4 py-3 md:px-6 md:py-5 font-body focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all placeholder:text-white/20 text-sm md:text-base"
-                                    placeholder={form.messagePlaceholder}
-                                    rows={5}
-                                    value={message}
-                                    onChange={(e) => setMessage(e.target.value)}
-                                    disabled={isSending}
-                                ></textarea>
-                            </div>
-
+                        <AnimatePresence>
                             {feedbackMsg && (
-                                <div className={`text-xs font-label uppercase tracking-widest px-4 py-2 border ${feedbackMsg.startsWith('CRITICAL') || feedbackMsg.startsWith('CONNECTION') ? 'border-primary/40 bg-primary/5 text-primary' : 'border-secondary/40 bg-secondary/5 text-secondary'}`}>
+                                <motion.div
+                                    role="alert"
+                                    initial={{ opacity: 0, y: -6 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.4, ease }}
+                                    className="accent-primary text-xs font-label uppercase tracking-wider px-4 py-3 border border-(--accent)/40 bg-(--accent)/5 text-(--accent-text)"
+                                >
                                     {feedbackMsg}
-                                </div>
+                                </motion.div>
                             )}
+                        </AnimatePresence>
 
-                            <button
-                                type="submit"
-                                className="w-full py-4 md:py-6 bg-primary hover:bg-white hover:text-primary border border-primary text-white font-headline text-xs sm:text-sm md:text-xl tracking-[0.2em] md:tracking-[0.5em] shadow-[0_0_40px_rgba(188,19,254,0.3)] transition-all active:scale-[0.98] uppercase cursor-pointer flex items-center justify-center gap-3"
-                                disabled={isSending}
-                            >
-                                {isSending ? (
-                                    <>
-                                        <span className="animate-spin material-symbols-outlined text-sm sm:text-xl">sync</span>
-                                        UPLINKING_DATA...
-                                    </>
-                                ) : (
-                                    form.submitText
-                                )}
-                            </button>
-                        </form>
-                    </div>
+                        <button type="submit" disabled={isSending} className="btn btn-primary w-full disabled:opacity-70 disabled:cursor-wait">
+                            {isSending ? (
+                                <>
+                                    <LoaderCircle className="w-4 h-4 animate-spin" aria-hidden="true" />
+                                    UPLINKING_DATA...
+                                </>
+                            ) : (
+                                form.submitText
+                            )}
+                        </button>
+                    </motion.form>
                 </motion.div>
-
-                <div className="mt-8 flex justify-between tech-readout opacity-50 px-2 sm:px-4 text-[7px] sm:text-[8px]">
-                    <div>{isSending ? "ESTABLISHING_ROUTING_TABLE..." : form.status}</div>
-                    <div>{form.encryption}</div>
-                </div>
             </div>
 
             {/* Cyberpunk Transmission Confirmation Modal */}
             <AnimatePresence>
                 {showModal && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/80 backdrop-blur-md"
+                        transition={{ duration: 0.35 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center px-4 bg-black/85"
                     >
                         <motion.div
-                            initial={{ scale: 0.9, y: 20 }}
-                            animate={{ scale: 1, y: 0 }}
-                            exit={{ scale: 0.9, y: 20 }}
-                            className="bg-background border-2 border-secondary p-8 sm:p-12 max-w-md w-full relative overflow-hidden shadow-[0_0_50px_rgba(0,243,255,0.3)]"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label="TRANSMISSION_SUCCESSFUL"
+                            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+                            transition={{ duration: 0.5, ease }}
+                            className="accent-secondary panel relative max-w-md w-full p-8 sm:p-12 bg-none bg-background text-center grid gap-6"
                         >
                             <div className="hud-tl"></div><div className="hud-tr"></div><div className="hud-bl"></div><div className="hud-br"></div>
-                            
-                            <div className="text-center space-y-6">
-                                <span className="material-symbols-outlined text-secondary text-glow-secondary text-5xl sm:text-6xl animate-pulse">
-                                    cloud_done
-                                </span>
-                                
-                                <div className="space-y-2">
-                                    <h3 className="text-xl sm:text-2xl font-headline font-black text-white uppercase tracking-wider">
-                                        TRANSMISSION_SUCCESSFUL
-                                    </h3>
-                                    <p className="text-xs font-label uppercase tracking-widest text-secondary">
-                                        Data Packet Saved to Secure Cloud
-                                    </p>
-                                </div>
 
-                                <p className="text-slate-400 text-xs sm:text-sm font-body leading-relaxed">
-                                    Your uplink is fully established. Operator Suneel has received your encrypted transmission. Ready for immediate contact response.
+                            <CloudCheck className="w-14 h-14 mx-auto text-secondary" strokeWidth={1.25} aria-hidden="true" />
+
+                            <div className="space-y-2">
+                                <h3 className="text-xl sm:text-2xl font-headline font-black text-white uppercase tracking-wider [overflow-wrap:anywhere]">
+                                    TRANSMISSION_SUCCESSFUL
+                                </h3>
+                                <p className="text-xs font-label uppercase tracking-widest text-secondary">
+                                    Data Packet Saved to Secure Cloud
                                 </p>
-
-                                <div className="tech-readout text-[9px] opacity-40">
-                                    PACKET_SIZE // 256B // FIRESTORE_ACK_OK
-                                </div>
-
-                                <button
-                                    onClick={() => setShowModal(false)}
-                                    className="w-full py-3 bg-secondary hover:bg-white hover:text-black border border-secondary text-black font-headline text-xs sm:text-sm tracking-widest font-bold transition-all uppercase cursor-pointer"
-                                >
-                                    TERMINATE_OVERLAY
-                                </button>
                             </div>
+
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Your uplink is fully established. Operator Suneel has received your encrypted transmission. Ready for immediate contact response.
+                            </p>
+
+                            <div className="tech-readout">
+                                PACKET_SIZE // 256B // FIRESTORE_ACK_OK
+                            </div>
+
+                            <button onClick={() => setShowModal(false)} className="btn btn-ghost w-full">
+                                TERMINATE_OVERLAY
+                            </button>
                         </motion.div>
                     </motion.div>
                 )}

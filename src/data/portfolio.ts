@@ -1,3 +1,5 @@
+const resumeUrl = "https://drive.google.com/uc?export=download&id=1HdxvvybM6G2MKjZi8169rzpDZdIt67Qw";
+
 export const portfolioData = {
     navbar: {
         logo: "[SUNEEL_KUMAR]",
@@ -22,6 +24,7 @@ export const portfolioData = {
             { text: "SYSTEM DESIGN", type: "secondary" }
         ],
         primaryAction: { label: "Access_Projects", href: "#projects" },
+        resumeAction: { label: "Download_Resume", href: resumeUrl },
         secondaryAction: { label: "Contact_Operator", href: "#contact" }
     },
     about: {
@@ -280,7 +283,7 @@ export const portfolioData = {
         links: [
             { label: "GITHUB", href: "https://github.com/suneel7351" },
             { label: "LINKEDIN", href: "https://www.linkedin.com/in/suneel7351" },
-            { label: "RESUME", href: "/suneel_kumar_resume.pdf" }
+            { label: "RESUME", href: resumeUrl }
         ]
     }
 };
