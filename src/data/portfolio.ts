@@ -31,9 +31,9 @@ export const portfolioData = {
         sectionId: "01",
         label: "// SUBJECT_INTEL",
         title: "Engineering Intelligent Architectures",
-        description: "I am Suneel Kumar, a Software Developer with 2+ years of experience specializing in building scalable full-stack applications, intelligent AI systems, and robust database backends. My expertise lies in designing multi-tenant AI SaaS platforms, RAG ingestion pipelines, and highly available services that optimize operational efficiency and deliver high-performance user experiences.",
+        description: "I am Suneel Kumar, a Software Developer with 3+ years of experience specializing in building scalable full-stack applications, intelligent AI systems, and robust database backends. My expertise lies in designing multi-tenant AI SaaS platforms, RAG ingestion pipelines, and highly available services that optimize operational efficiency and deliver high-performance user experiences.",
         stats: [
-            { label: "EXPERIENCE", value: "2+ YEARS" },
+            { label: "EXPERIENCE", value: "3+ YEARS" },
             { label: "LMS STUDENTS", value: "5000+" },
             { label: "PERFORMANCE BOOST", value: "30%" },
             { label: "TASKS MANAGED", value: "12K+" }
